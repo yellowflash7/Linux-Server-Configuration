@@ -114,7 +114,8 @@ port 123)*
 
 * Enable and Configure new virtual host    
 * Create host config file and edit and paste the following     
-   ```<VirtualHost *:80>    
+   ```
+     <VirtualHost *:80>    
         ServerName 13.126.58.158   
         ServerAdmin admin@13.126.58.158     
         WSGIScriptAlias / /var/www/catalog/catalog.wsgi    
@@ -130,27 +131,29 @@ port 123)*
         ErrorLog ${APACHE_LOG_DIR}/error.log   
         LogLevel warn    
         CustomLog ${APACHE_LOG_DIR}/access.log combined   
-      </VirtualHost>```   
-      
-* Enable ```sudo a2ensite catalog```   
-* Restart apache ```sudo service apache2 restart```   
-* Install and setup PostgreSQL  
-   ```sudo apt-get install postgresql   
-      sudo -i -u postgres   
-      psql```     
-   ```CREATE USER catalog WITH PASSWORD 'catalog';```   
-   ```ALTER USER catalog CREATEDB;```  
-   ```CREATE DATABASE catalog WITH OWNER catalog;```   
-   ```\c catalog```   
-   ```REVOKE ALL ON SCHEMA public FROM public;```   
-   ```GRANT ALL ON SCHEMA public TO catalog;```  
-   ```exit```  
-* Edit and config database_setup.py
-   ```sudo nano database_setup.py```    
-   ```engine = create_engine('postgresql://catalog:catalog@localhost/catalog')```  
-* Edit and config init.py
-   ```sudo nano init.py``` 
-   ```engine = create_engine('postgresql://catalog:catalog@localhost/catalog')```  
+      </VirtualHost>  
+      ```    
+* Enable ```sudo a2ensite catalog```     
+* Restart apache ```sudo service apache2 restart```     
+* Install and setup PostgreSQL     
+   ```
+   sudo apt-get install postgresql     
+      sudo -i -u postgres     
+      psql       
+      CREATE USER catalog WITH PASSWORD 'catalog';   
+      ALTER USER catalog CREATEDB;  
+      CREATE DATABASE catalog WITH OWNER catalog;   
+      \c catalog   
+      REVOKE ALL ON SCHEMA public FROM public;   
+      GRANT ALL ON SCHEMA public TO catalog;  
+      exit  
+   ```
+* Edit and config database_setup.py   
+   ```sudo nano database_setup.py```      
+   ```engine = create_engine('postgresql://catalog:catalog@localhost/catalog')```    
+* Edit and config init.py   
+   ```sudo nano init.py```   
+   ```engine = create_engine('postgresql://catalog:catalog@localhost/catalog')```    
 
 
 **ADD The public Ip in google developers console**
